@@ -3,6 +3,8 @@ const otherJobRoleInput = document.getElementById("other-job-role");
 const shirtDesign = document.getElementById("design");
 const divShirtColors = document.getElementById("shirt-colors");
 const shirtColorOptions = document.querySelectorAll("#color option");
+const registerForActivitiesSection = document.getElementById("activities");
+const activitiesCost = document.getElementById("activities-cost");
 
 function setVisibilityOtherJobInput() {
     //  how to get selected option 
@@ -11,7 +13,7 @@ function setVisibilityOtherJobInput() {
         otherJobRoleInput.type = "text";
     } else {
         otherJobRoleInput.type = "hidden";
-    }
+    };
 };
 
 function setVisShirtColors() {
@@ -28,10 +30,25 @@ function setVisShirtColors() {
     } else {
         divShirtColors.style.display = "none";
         shirtColorOptions[0].textContent = "Select a design theme above";
+    };
+};
+
+function updateActivitiesTotalCost() {
+
+    function calculateUpdatedCost( currentTotalStr, activityCostStr ) {
+        const currentTotal = parseInt(currentTotalStr);
+        const activityCost = parseInt(activityCostStr);
+        let newTotal = currentTotal + activityCost;
+        return newTotal.toString();
     }
 
-}
+    const currentTotalStr = activitiesCost.textContent;
+
+
+
+};
 
 jobRoleInput.addEventListener("change", setVisibilityOtherJobInput);
 divShirtColors.style.display = "none";
 shirtDesign.addEventListener("change", setVisShirtColors);
+registerForActivitiesSection.addEventListener("change", updateActivitiesTotalCost);
