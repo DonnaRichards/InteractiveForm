@@ -5,6 +5,11 @@ const divShirtColors = document.getElementById("shirt-colors");
 const shirtColorOptions = document.querySelectorAll("#color option");
 const registerForActivitiesSection = document.getElementById("activities");
 const activitiesCost = document.getElementById("activities-cost");
+const payment = document.getElementById("payment");
+const paymentOptions = document.querySelectorAll("#payment option");
+const creditcard = document.getElementById("credit-card");
+const paypal = document.getElementById("paypal");
+const bitcoin = document.getElementById("bitcoin");
 
 function setVisibilityOtherJobInput() {
     //  how to get selected option 
@@ -54,4 +59,15 @@ registerForActivitiesSection.addEventListener("change", e => {
     activitiesTotalCostStr = calculateUpdatedCost(activitiesTotalCostStr, activityCostStr);
     activitiesCostSplit[activitiesCostSplit.length - 1] = activitiesTotalCostStr;
     activitiesCost.textContent = activitiesCostSplit.join('$');
+});
+paypal.style.display = "none";
+bitcoin.style.display = "none";
+payment.addEventListener("change", e => {
+    for (let i = 1; i < paymentOptions.length; i++ ) {
+        if ( paymentOptions[i].selected ) {
+            document.getElementById(paymentOptions[i].value).style.display = "block";
+        } else {
+            document.getElementById(paymentOptions[i].value).style.display = "none";
+        }
+    }
 });
