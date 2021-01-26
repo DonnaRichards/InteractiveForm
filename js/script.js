@@ -33,22 +33,25 @@ function setVisShirtColors() {
     };
 };
 
-function updateActivitiesTotalCost() {
-
-    function calculateUpdatedCost( currentTotalStr, activityCostStr ) {
-        const currentTotal = parseInt(currentTotalStr);
-        const activityCost = parseInt(activityCostStr);
-        let newTotal = currentTotal + activityCost;
-        return newTotal.toString();
-    }
-
-    const currentTotalStr = activitiesCost.textContent;
-
-
-
+function calculateUpdatedCost( currentTotalStr, activityCostStr ) {
+    const currentTotal = parseInt(currentTotalStr);
+    const activityCost = parseInt(activityCostStr);
+    let newTotal = currentTotal + activityCost;
+    return newTotal.toString();
 };
+
 
 jobRoleInput.addEventListener("change", setVisibilityOtherJobInput);
 divShirtColors.style.display = "none";
 shirtDesign.addEventListener("change", setVisShirtColors);
-registerForActivitiesSection.addEventListener("change", updateActivitiesTotalCost);
+registerForActivitiesSection.addEventListener("change", e => {
+    const activitiesCostSplit = activitiesCost.textContent.split('$');
+    let activitiesTotalCostStr = activitiesCostSplit[activitiesCostSplit.length - 1];
+    let activityCostStr = e.target.dataset.cost;
+    if ( ! e.target.checked ) {
+        activityCostStr = '-' + activityCostStr;
+    }
+    activitiesTotalCostStr = calculateUpdatedCost(activitiesTotalCostStr, activityCostStr);
+    activitiesCostSplit[activitiesCostSplit.length - 1] = activitiesTotalCostStr;
+    activitiesCost.textContent = activitiesCostSplit.join('$');
+});
