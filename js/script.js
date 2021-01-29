@@ -10,6 +10,7 @@ const paymentOptions = document.querySelectorAll("#payment option");
 const creditcard = document.getElementById("credit-card");
 const paypal = document.getElementById("paypal");
 const bitcoin = document.getElementById("bitcoin");
+const form = document.querySelector("form");
 
 function setVisibilityOtherJobInput() {
     //  how to get selected option 
@@ -71,3 +72,13 @@ payment.addEventListener("change", e => {
         }
     }
 });
+
+function validateForm() {
+
+    function isVsalidName(name) {
+
+    }
+
+}
+
+form.addEventListener("submit", validateForm );
